@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
     tags: ["v*"]
+  release:
+    types: [published]   # creating a release on GitHub attaches the freshly built APK to it
   pull_request:
   workflow_dispatch:
 
@@ -34,8 +36,8 @@ jobs:
           name: UsosWidget-apk
           path: UsosWidget.apk
 
-      # A release (the public download link) is made only when a version tag like v1.0.0 is pushed.
-      - name: Publish release
+      # The public download link: attach the APK when a release / version tag like v1.0.0 is created.
+      - name: Attach APK to the release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
@@ -44,4 +46,5 @@ jobs:
             Download **UsosWidget.apk** below on your Android phone and open it.
             Step-by-step guide: https://github.com/${{ github.repository }}#readme
           files: UsosWidget.apk
+          overwrite_files: true
           make_latest: true
