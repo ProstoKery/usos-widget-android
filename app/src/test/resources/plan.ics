@@ -1,0 +1,101 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//MUCI//NONSGML USOS API 7.3.0.0-3\, 3949ba81 (2026-03-02)//EN
+X-ORIGINAL-URL:http://usosweb.vistula.edu.pl/kontroler.php?_action=home/pl
+ an&
+X-PUBLISHED-TTL:PT12H
+X-WR-CALNAME:Plan zajęć USOS
+X-WR-TIMEZONE:Europe/Warsaw
+BEGIN:VEVENT
+SUMMARY:W - Sztuczna Inteligencja\; SPEC: Inżynieria Sztucznej Inteligenc
+ ji
+DTSTART;VALUE=DATE-TIME:20261102T080000
+DTEND;VALUE=DATE-TIME:20261102T095500
+DTSTAMP;VALUE=DATE-TIME:20261102T024532Z
+UID:sm-1199330@usosapps.vistula.edu.pl
+DESCRIPTION:Sala: 114\nVistula University\n\nhttp://usosweb.vistula.edu.pl/
+ kontroler.php?_action=katalog2/przedmioty/pokazZajecia&gr_nr=1&zaj_cyk_id=
+ 93421\n
+LOCATION:Stokłosy 3\, 02-787 Warszawa
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Lab - Uczenie maszynowe\; SPEC: Inżynieria Sztucznej Inteligencji
+DTSTART;VALUE=DATE-TIME:20261102T123000
+DTEND;VALUE=DATE-TIME:20261102T142500
+DTSTAMP;VALUE=DATE-TIME:20261102T024532Z
+UID:sm-1199344@usosapps.vistula.edu.pl
+DESCRIPTION:Sala: 127 (Comp. Room)\nVistula University\n\nhttp://usosweb.vi
+ stula.edu.pl/kontroler.php?_action=katalog2/przedmioty/pokazZajecia&gr_nr=
+ 1&zaj_cyk_id=93426\n
+LOCATION:Stokłosy 3\, 02-787 Warszawa
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:W - Systemy operacyjne
+DTSTART;VALUE=DATE-TIME:20261103T165000
+DTEND;VALUE=DATE-TIME:20261103T184500
+DTSTAMP;VALUE=DATE-TIME:20261102T024532Z
+UID:sm-1199689@usosapps.vistula.edu.pl
+DESCRIPTION:Sala: A5\nVistula University\n\nhttp://usosweb.vistula.edu.pl/k
+ ontroler.php?_action=katalog2/przedmioty/pokazZajecia&gr_nr=1&zaj_cyk_id=9
+ 2418\n
+LOCATION:Stokłosy 3\, 02-787 Warszawa
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Lab - Systemy operacyjne
+DTSTART;VALUE=DATE-TIME:20261103T190000
+DTEND;VALUE=DATE-TIME:20261103T205500
+DTSTAMP;VALUE=DATE-TIME:20261102T024532Z
+UID:sm-1199701@usosapps.vistula.edu.pl
+DESCRIPTION:Sala: 131 (Comp. Room)\nVistula University\n\nhttp://usosweb.vi
+ stula.edu.pl/kontroler.php?_action=katalog2/przedmioty/pokazZajecia&gr_nr=
+ 1&zaj_cyk_id=92419\n
+LOCATION:Stokłosy 3\, 02-787 Warszawa
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:W - Rozproszone systemy komputerowe
+DTSTART;VALUE=DATE-TIME:20261104T101000
+DTEND;VALUE=DATE-TIME:20261104T120500
+DTSTAMP;VALUE=DATE-TIME:20261102T024532Z
+UID:sm-1196431@usosapps.vistula.edu.pl
+DESCRIPTION:Sala: Teams/Platon(online)\nVistula University\n\nhttp://usoswe
+ b.vistula.edu.pl/kontroler.php?_action=katalog2/przedmioty/pokazZajecia&gr
+ _nr=1&zaj_cyk_id=92455\n
+LOCATION:Stokłosy 3\, 02-787 Warszawa
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:C - Rozproszone systemy komputerowe
+DTSTART;VALUE=DATE-TIME:20261106T144000
+DTEND;VALUE=DATE-TIME:20261106T163500
+DTSTAMP;VALUE=DATE-TIME:20261102T024532Z
+UID:sm-1196408@usosapps.vistula.edu.pl
+DESCRIPTION:Sala: 125 (Comp. Room)\nVistula University\n\nhttp://usosweb.vi
+ stula.edu.pl/kontroler.php?_action=katalog2/przedmioty/pokazZajecia&gr_nr=
+ 4&zaj_cyk_id=92456\n
+LOCATION:Stokłosy 3\, 02-787 Warszawa
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:W - Logika rozmyta\; SPEC: Inżynieria Sztucznej Inteligencji
+DTSTART;VALUE=DATE-TIME:20270120T080000
+DTEND;VALUE=DATE-TIME:20270120T095500
+DTSTAMP;VALUE=DATE-TIME:20261102T024532Z
+UID:sm-1199999@usosapps.vistula.edu.pl
+DESCRIPTION:Sala: 114\nVistula University\n\nhttp://usosweb.vistula.edu.pl/
+ kontroler.php?_action=katalog2/przedmioty/pokazZajecia&gr_nr=1&zaj_cyk_id=
+ 93413\n
+LOCATION:Stokłosy 3\, 02-787 Warszawa
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

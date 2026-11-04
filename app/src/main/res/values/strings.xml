@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">USOS Widget</string>
+    <string name="widget_next">Next class</string>
+    <string name="widget_schedule">Timetable</string>
+    <string name="widget_next_desc">Your current or next class from USOS</string>
+    <string name="widget_schedule_desc">All upcoming classes from USOS</string>
+    <string name="loading">Loading…</string>
+    <string name="no_link_title">No timetable link</string>
+    <string name="no_link_detail">Tap to open the app</string>
+    <string name="no_classes">No classes</string>
+    <string name="no_classes_detail">in the coming weeks</string>
+    <string name="empty_no_link">Open the app and paste your USOS link</string>
+    <string name="updated_at">upd. %1$s</string>
+    <string name="no_connection">No connection to USOS</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="tomorrow_at">tomorrow %1$s</string>
+    <string name="until">until %1$s</string>
+    <string name="now">now</string>
+    <string name="ch_changes">Timetable changes</string>
+    <string name="changes_title">Timetable changes (%1$d)</string>
+    <string name="change_new">New: %1$s — %2$s</string>
+    <string name="change_moved">Moved: %1$s — was %2$s, now %3$s</string>
+    <string name="change_detail" translatable="false">%1$s (%2$s): %3$s → %4$s</string>
+    <string name="change_cancelled">Cancelled: %1$s — %2$s</string>
+    <string name="changes_more">…and %1$d more</string>
+    <string name="err_http">USOS answered with code %1$d</string>
+    <string name="err_not_calendar">The link is not a calendar — check it</string>
+    <string name="err_empty">USOS returned an empty timetable, showing the last one</string>
+    <string name="step_link">1. Your timetable link from USOS</string>
+    <string name="step_link_hint">USOSweb → Mój USOSweb → Plan zajęć → Eksportuj → copy the link and paste it below (or use “Share” on the link and pick USOS Widget).</string>
+    <string name="link_field_hint" translatable="false">https://usosapps.…/services/tt/upcoming_ical?…</string>
+    <string name="link_replace_hint">Paste a new link here to replace it</string>
+    <string name="link_saved">✅ Link saved</string>
+    <string name="save">Save and refresh</string>
+    <string name="paste_first">Paste the link first</string>
+    <string name="bad_link">This doesn\'t look like a link</string>
+    <string name="saved">Saved, loading the timetable…</string>
+    <string name="link_private">The link contains your private key — don\'t post it in group chats.</string>
+    <string name="step_widgets">2. Widgets</string>
+    <string name="step_widgets_pin">Add a widget with one tap:</string>
+    <string name="add_widget">Add “%1$s”</string>
+    <string name="step_widgets_hint">Or: long-press an empty spot on the home screen → Widgets → USOS Widget → “%1$s” or “%2$s”.</string>
+    <string name="status">Status</string>
+    <string name="st_schedule">Timetable:</string>
+    <string name="st_no_link">link not added yet</string>
+    <string name="st_ok">%1$d classes ahead · updated %2$s</string>
+    <string name="st_next">Next: %1$s, %2$s — %3$s</string>
+    <string name="refresh">Refresh now</string>
+    <string name="refreshing">Refreshing…</string>
+    <string name="battery_hint">If the widget stops updating, open the app settings → Battery and choose “Unrestricted”.</string>
+    <string name="battery_button">App settings</string>
+</resources>
