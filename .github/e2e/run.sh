@@ -40,6 +40,35 @@ python3 "$HERE/make_ics.py" "$TZID" "$SERVE/plan.ics"
 sleep 1
 curl -sf http://127.0.0.1:8000/plan.ics >/dev/null || fail "demo timetable server did not start"
 
+UI() { python3 "$HERE/ui.py" "$@" >/dev/null 2>&1; }
+RELEASE_APK="https://github.com/${GITHUB_REPOSITORY:-ProstoKery/usos-widget-android}/releases/latest/download/UsosWidget.apk"
+
+echo "== Docs: download and install the release APK in Chrome (best effort, never fails the test)"
+adb root >/dev/null 2>&1; sleep 3; adb wait-for-device
+adb shell 'echo "_ --disable-fre --no-default-browser-check --no-first-run" > /data/local/tmp/chrome-command-line'
+adb shell am set-debug-app --persistent com.android.chrome >/dev/null 2>&1
+adb shell am start -a android.intent.action.VIEW -d "$RELEASE_APK" com.android.chrome >/dev/null 2>&1
+for _ in 1 2 3; do UI tap '^(no thanks|use without an account|accept & continue|got it|not now)$' --timeout 4; done
+UI wait '(download anyway|harmful|^download$)' --timeout 40
+shot docs-1-download 1
+UI tap '^(download anyway|download|keep)$' --timeout 10
+UI wait '^open$' --timeout 60
+shot docs-2-downloaded 1
+UI tap '^open$' --timeout 10
+UI wait '^settings$' --timeout 20
+shot docs-3-unknown-source 1
+UI tap '^settings$' --timeout 10
+UI tap 'allow from this source' --timeout 15
+shot docs-4-allow 2
+adb shell input keyevent KEYCODE_BACK
+UI wait '^install$' --timeout 20
+shot docs-5-install 1
+UI tap '^install$' --timeout 10
+UI wait '^(done|open)$' --timeout 60
+shot docs-6-installed 1
+UI tap '^done$' --timeout 5
+adb shell input keyevent KEYCODE_HOME
+
 echo "== Install"
 adb install -r -g "$APK" || fail "install failed"
 adb shell cmd locale set-app-locales $PKG --locales en
@@ -56,6 +85,23 @@ echo "== Both widgets, drawn by a widget host"
 adb shell appwidget grantbind --package $PKG --user 0 || echo "grantbind command failed"
 widgets
 shot 03-widgets 4
+
+echo "== Docs: add both widgets with the in-app buttons (best effort)"
+app; sleep 2
+if UI tap '^Add .Next class.$' --scroll --timeout 15; then
+  shot docs-7-pin-dialog 2
+  UI tap '^(add to home screen|add automatically|add)$' --timeout 10
+  sleep 2; app; sleep 2
+  UI tap '^Add .Timetable.$' --scroll --timeout 15 && sleep 2 && UI tap '^(add to home screen|add automatically|add)$' --timeout 10
+  sleep 2
+  adb shell input keyevent KEYCODE_HOME
+  shot docs-8-home 5
+  adb shell input swipe 900 1200 150 1200 300   # the big widget may land on the next page
+  shot docs-8b-home-page2 3
+  adb shell input keyevent KEYCODE_HOME
+else
+  echo "this launcher can't pin widgets — skipped"
+fi
 
 echo "== Timetable change → notification"
 python3 "$HERE/make_ics.py" "$TZID" "$SERVE/plan.ics" --changed
