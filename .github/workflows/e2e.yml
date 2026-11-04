@@ -1,16 +1,20 @@
 name: Emulator test
 
-# Installs the real APK on an Android 14 emulator, loads a demo timetable,
-# adds both widgets to the home screen and saves screenshots of every step.
+# Installs the app on an Android 14 emulator, loads a demo timetable, renders both widgets,
+# checks the change notification and all four languages, and saves screenshots of every step
+# (as a workflow artifact and on the e2e-screenshots branch).
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   e2e:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
 
@@ -21,8 +25,8 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
-      - name: Build APK
-        run: ./gradlew :app:assembleDebug --no-daemon
+      - name: Build the e2e APK
+        run: ./gradlew :app:assembleE2e --no-daemon
 
       - name: Enable KVM (hardware acceleration for the emulator)
         run: |
@@ -31,6 +35,7 @@ jobs:
           sudo udevadm trigger --name-match=kvm
 
       - name: Run on the emulator
+        timeout-minutes: 20
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
@@ -39,7 +44,7 @@ jobs:
           profile: pixel_6
           disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: bash .github/e2e/run.sh app/build/outputs/apk/debug/app-debug.apk
+          script: bash .github/e2e/run.sh app/build/outputs/apk/e2e/app-e2e.apk
 
       - name: Upload screenshots
         if: always()
@@ -47,3 +52,15 @@ jobs:
         with:
           name: e2e-screenshots
           path: e2e-shots
+
+      - name: Publish screenshots to the e2e-screenshots branch
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          [ -d e2e-shots ] || exit 0
+          cd e2e-shots
+          git init -q -b e2e-screenshots
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Emulator screenshots for ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" e2e-screenshots

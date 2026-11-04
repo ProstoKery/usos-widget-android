@@ -29,6 +29,11 @@ android {
         getByName("debug") {
             signingConfig = signingConfigs.getByName("debug")
         }
+        // Only for the emulator test: the debug app plus a screen that shows both widgets (src/e2e).
+        create("e2e") {
+            initWith(getByName("debug"))
+            matchingFallbacks += listOf("debug")
+        }
     }
 
     compileOptions {
