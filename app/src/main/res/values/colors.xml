@@ -6,4 +6,5 @@
     <color name="ink">#1B1A3A</color>
     <color name="muted">#5F5B4A</color>
     <color name="warn">#B42318</color>
+    <color name="app_bg">#FAFAFA</color>
 </resources>

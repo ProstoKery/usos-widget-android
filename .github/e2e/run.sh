@@ -65,11 +65,10 @@ for _ in $(seq 1 40); do [ "$(saved_at)" != "$BEFORE" ] && break; sleep 1; done
 sleep 2
 adb shell dumpsys notification --noredact | grep -q "Timetable changes" || fail "no change notification"
 adb shell input keyevent KEYCODE_HOME
-adb shell cmd statusbar expand-notifications
 sleep 1
-adb shell input swipe 540 5 540 1400 300   # fallback: pull the shade down
+adb shell input swipe 540 5 540 700 250   # pull the notification shade down once
 shot 04-change-notification 3
-adb shell cmd statusbar collapse
+adb shell input keyevent KEYCODE_BACK
 widgets
 shot 05-widgets-after-change 4
 

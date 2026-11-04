@@ -49,8 +49,10 @@ class MainActivity : Activity() {
             setPadding(pad, pad, pad, pad)
         }
 
-        // 1. Link (the app name is already in the title bar)
-        col.addView(header(getString(R.string.step_link), top = 4))
+        col.addView(header(getString(R.string.app_name), 26f, top = 4))
+
+        // 1. Link
+        col.addView(header(getString(R.string.step_link)))
         col.addView(body(getString(R.string.step_link_hint)))
         linkState = body("").apply { setTypeface(typeface, Typeface.BOLD) }
         col.addView(linkState)
@@ -104,14 +106,15 @@ class MainActivity : Activity() {
         val scroll = ScrollView(this).apply {
             addView(col)
             clipToPadding = false
-            // Android 15 draws apps behind the navigation bar: keep the last buttons above it.
+            // Android 15 draws apps behind the status and navigation bars: keep the content between them.
             setOnApplyWindowInsetsListener { v, insets ->
-                val bottom = if (Build.VERSION.SDK_INT >= 30) {
-                    insets.getInsets(WindowInsets.Type.systemBars()).bottom
+                if (Build.VERSION.SDK_INT >= 30) {
+                    val bars = insets.getInsets(WindowInsets.Type.systemBars())
+                    v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
                 } else {
-                    @Suppress("DEPRECATION") insets.systemWindowInsetBottom
+                    @Suppress("DEPRECATION")
+                    v.setPadding(insets.systemWindowInsetLeft, insets.systemWindowInsetTop, insets.systemWindowInsetRight, insets.systemWindowInsetBottom)
                 }
-                v.setPadding(0, 0, 0, bottom)
                 insets
             }
         }
