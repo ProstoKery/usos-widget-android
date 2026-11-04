@@ -16,6 +16,7 @@ import android.provider.Settings
 import android.text.InputType
 import android.util.TypedValue
 import android.view.View
+import android.view.WindowInsets
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.Button
@@ -48,10 +49,8 @@ class MainActivity : Activity() {
             setPadding(pad, pad, pad, pad)
         }
 
-        col.addView(header(getString(R.string.app_name), 24f, top = 0))
-
-        // 1. Link
-        col.addView(header(getString(R.string.step_link)))
+        // 1. Link (the app name is already in the title bar)
+        col.addView(header(getString(R.string.step_link), top = 4))
         col.addView(body(getString(R.string.step_link_hint)))
         linkState = body("").apply { setTypeface(typeface, Typeface.BOLD) }
         col.addView(linkState)
@@ -102,7 +101,21 @@ class MainActivity : Activity() {
             }
         })
 
-        setContentView(ScrollView(this).apply { addView(col) })
+        val scroll = ScrollView(this).apply {
+            addView(col)
+            clipToPadding = false
+            // Android 15 draws apps behind the navigation bar: keep the last buttons above it.
+            setOnApplyWindowInsetsListener { v, insets ->
+                val bottom = if (Build.VERSION.SDK_INT >= 30) {
+                    insets.getInsets(WindowInsets.Type.systemBars()).bottom
+                } else {
+                    @Suppress("DEPRECATION") insets.systemWindowInsetBottom
+                }
+                v.setPadding(0, 0, 0, bottom)
+                insets
+            }
+        }
+        setContentView(scroll)
 
         if (Build.VERSION.SDK_INT >= 33 &&
             checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED

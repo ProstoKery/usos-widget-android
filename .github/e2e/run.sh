@@ -26,7 +26,8 @@ share_link() {
   adb shell "am start -W -a android.intent.action.SEND -t text/plain --es android.intent.extra.TEXT '$1' -n $PKG/.MainActivity" >/dev/null
 }
 saved_at() { adb shell run-as $PKG cat shared_prefs/store.xml 2>/dev/null | sed -n 's/.*name="schedule_at" value="\([0-9]*\)".*/\1/p'; }
-widgets() { adb shell am start -W -n $PKG/.WidgetPreviewActivity >/dev/null; }
+widgets() { adb shell am start -W --activity-clear-task -n $PKG/.WidgetPreviewActivity >/dev/null; }
+app() { adb shell am start -W --activity-clear-task -n $PKG/.MainActivity >/dev/null; }
 
 adb wait-for-device
 adb shell input keyevent KEYCODE_WAKEUP
@@ -42,7 +43,7 @@ curl -sf http://127.0.0.1:8000/plan.ics >/dev/null || fail "demo timetable serve
 echo "== Install"
 adb install -r -g "$APK" || fail "install failed"
 adb shell cmd locale set-app-locales $PKG --locales en
-adb shell am start -W -n $PKG/.MainActivity >/dev/null || fail "app did not start"
+app || fail "app did not start"
 shot 01-first-start 3
 
 echo "== Give the link the way users can: Share → USOS Widget"
@@ -65,6 +66,8 @@ sleep 2
 adb shell dumpsys notification --noredact | grep -q "Timetable changes" || fail "no change notification"
 adb shell input keyevent KEYCODE_HOME
 adb shell cmd statusbar expand-notifications
+sleep 1
+adb shell input swipe 540 5 540 1400 300   # fallback: pull the shade down
 shot 04-change-notification 3
 adb shell cmd statusbar collapse
 widgets
@@ -78,7 +81,7 @@ echo "== Languages"
 for L in pl uk ru en; do
   adb shell cmd locale set-app-locales $PKG --locales $L
   sleep 3
-  adb shell am start -W -n $PKG/.MainActivity >/dev/null
+  app
   shot "06-app-$L" 3
   widgets
   shot "07-widgets-$L" 4

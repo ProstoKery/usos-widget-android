@@ -1,6 +1,6 @@
 name: Emulator test
 
-# Installs the app on an Android 14 emulator, loads a demo timetable, renders both widgets,
+# Installs the app on an Android 15 emulator, loads a demo timetable, renders both widgets,
 # checks the change notification and all four languages, and saves screenshots of every step
 # (as a workflow artifact and on the e2e-screenshots branch).
 on:
@@ -43,7 +43,7 @@ jobs:
         timeout-minutes: 20
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 34
+          api-level: 35
           target: google_apis
           arch: x86_64
           profile: pixel_6

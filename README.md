@@ -120,7 +120,7 @@ The widget is a picture that the app draws in the background. **Looking at it do
 
 - No libraries — only the Android framework and the Kotlin standard library. Android 8.0+ (API 26), target API 35.
 - Unit tests: [`app/src/test`](app/src/test) — the USOS calendar parser and change detection.
-- [Emulator test](.github/workflows/e2e.yml) on every push: installs the app on Android 14, serves a demo timetable, renders both widgets, checks the change notification and all four languages, and saves screenshots of every step to the [`e2e-screenshots`](../../tree/e2e-screenshots) branch.
+- [Emulator test](.github/workflows/e2e.yml) on every push: installs the app on Android 15, serves a demo timetable, renders both widgets, checks the change notification and all four languages, and saves screenshots of every step to the [`e2e-screenshots`](../../tree/e2e-screenshots) branch.
 - A release with the APK is published when a `v*` tag is pushed.
 
 ```
