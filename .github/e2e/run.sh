@@ -29,45 +29,27 @@ saved_at() { adb shell run-as $PKG cat shared_prefs/store.xml 2>/dev/null | sed 
 widgets() { adb shell am start -W --activity-clear-task -n $PKG/.WidgetPreviewActivity >/dev/null; }
 app() { adb shell am start -W --activity-clear-task -n $PKG/.MainActivity >/dev/null; }
 
+UI() { python3 "$HERE/ui.py" "$@" >/dev/null 2>&1; }
+# Close "isn't responding" dialogs and first-run prompts that a fresh emulator likes to show.
+dismiss() { for _ in 1 2 3; do UI tap '^(wait|no thanks|use without an account|accept & continue|got it|not now)$' --timeout 3; done; }
+
 adb wait-for-device
+adb root >/dev/null 2>&1; sleep 3; adb wait-for-device
+until [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = 1 ]; do sleep 2; done
+# Daytime on the emulator, so the screenshots look like a normal day at the university.
+adb shell settings put global auto_time 0
+adb shell date "$(date -u +%m%d)0920$(date -u +%Y).00" >/dev/null
+NOW=$(adb shell date +%Y-%m-%dT%H:%M | tr -d '\r')
 adb shell input keyevent KEYCODE_WAKEUP
 adb shell wm dismiss-keyguard
+sleep 15; dismiss
 TZID=$(adb shell getprop persist.sys.timezone | tr -d '\r')
 [ -n "$TZID" ] || TZID=UTC
-echo "Emulator time zone: $TZID"
+echo "Emulator time zone: $TZID, clock: $NOW"
 
-python3 "$HERE/make_ics.py" "$TZID" "$SERVE/plan.ics"
+python3 "$HERE/make_ics.py" "$TZID" "$SERVE/plan.ics" --now "$NOW"
 sleep 1
 curl -sf http://127.0.0.1:8000/plan.ics >/dev/null || fail "demo timetable server did not start"
-
-UI() { python3 "$HERE/ui.py" "$@" >/dev/null 2>&1; }
-RELEASE_APK="https://github.com/${GITHUB_REPOSITORY:-ProstoKery/usos-widget-android}/releases/latest/download/UsosWidget.apk"
-
-echo "== Docs: download and install the release APK in Chrome (best effort, never fails the test)"
-adb root >/dev/null 2>&1; sleep 3; adb wait-for-device
-adb shell 'echo "_ --disable-fre --no-default-browser-check --no-first-run" > /data/local/tmp/chrome-command-line'
-adb shell am set-debug-app --persistent com.android.chrome >/dev/null 2>&1
-adb shell am start -a android.intent.action.VIEW -d "$RELEASE_APK" com.android.chrome >/dev/null 2>&1
-for _ in 1 2 3; do UI tap '^(no thanks|use without an account|accept & continue|got it|not now)$' --timeout 4; done
-UI wait '(download anyway|harmful|^download$)' --timeout 40
-shot docs-1-download 1
-UI tap '^(download anyway|download|keep)$' --timeout 10
-UI wait '^open$' --timeout 60
-shot docs-2-downloaded 1
-UI tap '^open$' --timeout 10
-UI wait '^settings$' --timeout 20
-shot docs-3-unknown-source 1
-UI tap '^settings$' --timeout 10
-UI tap 'allow from this source' --timeout 15
-shot docs-4-allow 2
-adb shell input keyevent KEYCODE_BACK
-UI wait '^install$' --timeout 20
-shot docs-5-install 1
-UI tap '^install$' --timeout 10
-UI wait '^(done|open)$' --timeout 60
-shot docs-6-installed 1
-UI tap '^done$' --timeout 5
-adb shell input keyevent KEYCODE_HOME
 
 echo "== Install"
 adb install -r -g "$APK" || fail "install failed"
@@ -104,7 +86,7 @@ else
 fi
 
 echo "== Timetable change → notification"
-python3 "$HERE/make_ics.py" "$TZID" "$SERVE/plan.ics" --changed
+python3 "$HERE/make_ics.py" "$TZID" "$SERVE/plan.ics" --changed --now "$NOW"
 BEFORE=$(saved_at)
 share_link "$LINK"
 for _ in $(seq 1 40); do [ "$(saved_at)" != "$BEFORE" ] && break; sleep 1; done
@@ -131,6 +113,35 @@ for L in pl uk ru en; do
   widgets
   shot "07-widgets-$L" 4
 done
+
+RELEASE_APK="https://github.com/${GITHUB_REPOSITORY:-ProstoKery/usos-widget-android}/releases/latest/download/UsosWidget.apk"
+
+echo "== Docs: download and install the release APK in Chrome (best effort, never fails the test)"
+adb uninstall $PKG >/dev/null 2>&1   # a fresh install, like a new user
+adb shell 'echo "_ --disable-fre --no-default-browser-check --no-first-run" > /data/local/tmp/chrome-command-line'
+adb shell am set-debug-app --persistent com.android.chrome >/dev/null 2>&1
+adb shell am start -a android.intent.action.VIEW -d "$RELEASE_APK" com.android.chrome >/dev/null 2>&1
+sleep 3; dismiss
+UI wait '(download anyway|harmful|^download$)' --timeout 40; dismiss
+shot docs-dl-1-download 1
+UI tap '^(download anyway|download|keep)$' --timeout 10
+UI wait '^open$' --timeout 60
+shot docs-dl-2-downloaded 1
+UI tap '^open$' --timeout 10
+UI wait '^settings$' --timeout 20
+shot docs-dl-3-unknown-source 1
+UI tap '^settings$' --timeout 10
+UI tap 'allow from this source' --timeout 15
+shot docs-dl-4-allow 2
+adb shell input keyevent KEYCODE_BACK
+UI wait '^install$' --timeout 20
+shot docs-dl-5-install 1
+UI tap '^install$' --timeout 10
+UI wait '^(done|open)$' --timeout 60
+shot docs-dl-6-installed 1
+UI tap '^done$' --timeout 5
+adb shell input keyevent KEYCODE_HOME
+
 
 finish
 if grep -A3 "FATAL EXCEPTION" "$OUT/logcat.txt" | grep -q "$PKG"; then

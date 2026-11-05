@@ -1,6 +1,6 @@
 """Writes a demo USOS-style timetable around the current time.
 
-usage: make_ics.py <IANA time zone> <output.ics> [--changed]
+usage: make_ics.py <IANA time zone> <output.ics> [--changed] [--now YYYY-MM-DDTHH:MM]
 --changed moves one class, cancels one and changes a room (to trigger the change notification).
 """
 import sys
@@ -10,7 +10,10 @@ from zoneinfo import ZoneInfo
 tz_name, out = sys.argv[1], sys.argv[2]
 changed = "--changed" in sys.argv
 tz = ZoneInfo(tz_name)
-now = datetime.now(tz).replace(second=0, microsecond=0)
+now = datetime.now(tz)
+if "--now" in sys.argv:  # the emulator's clock, e.g. 2026-11-05T09:20
+    now = datetime.fromisoformat(sys.argv[sys.argv.index("--now") + 1]).replace(tzinfo=tz)
+now = now.replace(second=0, microsecond=0)
 now = now - timedelta(minutes=now.minute % 5)
 day = timedelta(days=1)
 
