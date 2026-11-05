@@ -53,15 +53,15 @@
 
 ### Крок 2. Встанови застосунок
 
-1. На телефоні натисни **[UsosWidget.apk](https://github.com/ProstoKery/usos-widget-android/releases/latest/download/UsosWidget.apk)** — почнеться завантаження.
+1. На телефоні натисни **[UsosWidget.apk](https://github.com/ProstoKery/usos-widget-android/releases/latest/download/UsosWidget.apk)** — почнеться завантаження. Якщо Chrome попередить, що файл може бути шкідливим, натисни **Усе одно завантажити**, а потім **Відкрити**.
 
-   <img src="docs/img/android-1-download.png" width="260">
+   <img src="docs/img/android-1-download.jpg" width="520">
 
 2. Відкрий завантажений файл. Android запитає, чи може браузер встановлювати застосунки: натисни **Налаштування** → увімкни **Дозволити з цього джерела** → повернись → **Встановити**.
 
    Якщо Google Play Protect попередить про невідомий застосунок, натисни **Докладніше** → **Усе одно встановити**. Попередження з'являється, бо застосунку немає в Google Play. Увесь його код є в цьому репозиторії.
 
-   <img src="docs/img/android-2-install.png" width="260">
+   <img src="docs/img/android-2-install.jpg" width="780">
 
 ### Крок 3. Встав посилання
 
@@ -69,7 +69,7 @@
 
 > 💡 Замість копіювання можна натиснути **Поділитися** на посиланні й обрати **USOS Widget**.
 
-<img src="docs/img/android-3-app.png" width="260">
+<img src="docs/img/android-3-app.jpg" width="260">
 
 ### Крок 4. Додай віджети
 
@@ -77,7 +77,7 @@
 
 Або звичайним способом: довго натисни на порожнє місце робочого столу → **Віджети** → **USOS Widget** → перетягни віджет на екран.
 
-<img src="docs/img/android-4-add-widget.png" width="260"> <img src="docs/img/android-5-home.png" width="260">
+<img src="docs/img/android-4-add-widget.jpg" width="520"> <img src="docs/img/android-5-home.jpg" width="260">
 
 ### Крок 5. Xiaomi, Huawei, Samsung та інші: дозволь роботу у фоні
 

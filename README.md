@@ -53,15 +53,15 @@ Do this on your phone, in Chrome or any other browser. The screenshots show one 
 
 ### Step 2. Install the app
 
-1. On your phone tap **[UsosWidget.apk](https://github.com/ProstoKery/usos-widget-android/releases/latest/download/UsosWidget.apk)** — the download starts.
+1. On your phone tap **[UsosWidget.apk](https://github.com/ProstoKery/usos-widget-android/releases/latest/download/UsosWidget.apk)** — the download starts. If Chrome warns that the file might be harmful, tap **Download anyway**, then **Open**.
 
-   <img src="docs/img/android-1-download.png" width="260">
+   <img src="docs/img/android-1-download.jpg" width="520">
 
 2. Open the downloaded file. Android asks whether your browser may install apps: tap **Settings** → turn on **Allow from this source** → go back → **Install**.
 
    If Google Play Protect warns about an unknown app, tap **More details** → **Install anyway**. The app isn't in Google Play, which is why you see the warning. All of its code is in this repository.
 
-   <img src="docs/img/android-2-install.png" width="260">
+   <img src="docs/img/android-2-install.jpg" width="780">
 
 ### Step 3. Paste the link
 
@@ -69,7 +69,7 @@ Open **USOS Widget**, paste the link into the field and tap **Save and refresh**
 
 > 💡 Instead of copying, you can also use **Share** on the link and pick **USOS Widget**.
 
-<img src="docs/img/android-3-app.png" width="260">
+<img src="docs/img/android-3-app.jpg" width="260">
 
 ### Step 4. Add the widgets
 
@@ -77,7 +77,7 @@ In the app tap **Add “Next class”** and/or **Add “Timetable”**, then **A
 
 Or the usual way: long-press an empty spot on the home screen → **Widgets** → **USOS Widget** → drag a widget onto the screen.
 
-<img src="docs/img/android-4-add-widget.png" width="260"> <img src="docs/img/android-5-home.png" width="260">
+<img src="docs/img/android-4-add-widget.jpg" width="520"> <img src="docs/img/android-5-home.jpg" width="260">
 
 ### Step 5. Xiaomi, Huawei, Samsung and others: allow background work
 

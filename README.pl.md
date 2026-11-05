@@ -53,15 +53,15 @@ Zrób to na telefonie, w Chrome lub innej przeglądarce. Zrzuty ekranu pochodzą
 
 ### Krok 2. Zainstaluj aplikację
 
-1. Na telefonie dotknij **[UsosWidget.apk](https://github.com/ProstoKery/usos-widget-android/releases/latest/download/UsosWidget.apk)** — rozpocznie się pobieranie.
+1. Na telefonie dotknij **[UsosWidget.apk](https://github.com/ProstoKery/usos-widget-android/releases/latest/download/UsosWidget.apk)** — rozpocznie się pobieranie. Jeśli Chrome ostrzeże, że plik może być szkodliwy, dotknij **Pobierz mimo to**, a potem **Otwórz**.
 
-   <img src="docs/img/android-1-download.png" width="260">
+   <img src="docs/img/android-1-download.jpg" width="520">
 
 2. Otwórz pobrany plik. Android zapyta, czy przeglądarka może instalować aplikacje: dotknij **Ustawienia** → włącz **Zezwalaj z tego źródła** → wróć → **Zainstaluj**.
 
    Jeśli Google Play Protect ostrzeże przed nieznaną aplikacją, dotknij **Więcej szczegółów** → **Zainstaluj mimo to**. Ostrzeżenie pojawia się, bo aplikacji nie ma w Google Play. Cały jej kod jest w tym repozytorium.
 
-   <img src="docs/img/android-2-install.png" width="260">
+   <img src="docs/img/android-2-install.jpg" width="780">
 
 ### Krok 3. Wklej link
 
@@ -69,7 +69,7 @@ Otwórz **USOS Widget**, wklej link w pole i dotknij **Zapisz i odśwież**. Gdy
 
 > 💡 Zamiast kopiować możesz też użyć **Udostępnij** na linku i wybrać **USOS Widget**.
 
-<img src="docs/img/android-3-app.png" width="260">
+<img src="docs/img/android-3-app.jpg" width="260">
 
 ### Krok 4. Dodaj widżety
 
@@ -77,7 +77,7 @@ W aplikacji dotknij **Dodaj „Najbliższe zajęcia”** i/lub **Dodaj „Plan z
 
 Albo tradycyjnie: przytrzymaj puste miejsce na ekranie głównym → **Widżety** → **USOS Widget** → przeciągnij widżet na ekran.
 
-<img src="docs/img/android-4-add-widget.png" width="260"> <img src="docs/img/android-5-home.png" width="260">
+<img src="docs/img/android-4-add-widget.jpg" width="520"> <img src="docs/img/android-5-home.jpg" width="260">
 
 ### Krok 5. Xiaomi, Huawei, Samsung i inne: pozwól działać w tle
 

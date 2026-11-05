@@ -53,15 +53,15 @@
 
 ### Шаг 2. Установи приложение
 
-1. На телефоне нажми **[UsosWidget.apk](https://github.com/ProstoKery/usos-widget-android/releases/latest/download/UsosWidget.apk)** — начнётся загрузка.
+1. На телефоне нажми **[UsosWidget.apk](https://github.com/ProstoKery/usos-widget-android/releases/latest/download/UsosWidget.apk)** — начнётся загрузка. Если Chrome предупредит, что файл может быть опасным, нажми **Всё равно скачать**, а потом **Открыть**.
 
-   <img src="docs/img/android-1-download.png" width="260">
+   <img src="docs/img/android-1-download.jpg" width="520">
 
 2. Открой скачанный файл. Android спросит, можно ли браузеру устанавливать приложения: нажми **Настройки** → включи **Разрешить из этого источника** → вернись назад → **Установить**.
 
    Если Google Play Защита предупредит о неизвестном приложении, нажми **Подробнее** → **Всё равно установить**. Предупреждение появляется, потому что приложения нет в Google Play. Весь его код лежит в этом репозитории.
 
-   <img src="docs/img/android-2-install.png" width="260">
+   <img src="docs/img/android-2-install.jpg" width="780">
 
 ### Шаг 3. Вставь ссылку
 
@@ -69,7 +69,7 @@
 
 > 💡 Вместо копирования можно нажать **Поделиться** на ссылке и выбрать **USOS Widget**.
 
-<img src="docs/img/android-3-app.png" width="260">
+<img src="docs/img/android-3-app.jpg" width="260">
 
 ### Шаг 4. Добавь виджеты
 
@@ -77,7 +77,7 @@
 
 Или обычным способом: долгое нажатие на пустом месте рабочего стола → **Виджеты** → **USOS Widget** → перетащи виджет на экран.
 
-<img src="docs/img/android-4-add-widget.png" width="260"> <img src="docs/img/android-5-home.png" width="260">
+<img src="docs/img/android-4-add-widget.jpg" width="520"> <img src="docs/img/android-5-home.jpg" width="260">
 
 ### Шаг 5. Xiaomi, Huawei, Samsung и другие: разреши работу в фоне
 
